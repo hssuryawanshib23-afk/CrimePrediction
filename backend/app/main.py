@@ -15,6 +15,8 @@ app = FastAPI(
     version="1.0.0",
 )
 
+API_PREFIX = "/api"
+
 allowed_origins = [
     origin.strip()
     for origin in os.getenv(
@@ -33,21 +35,21 @@ app.add_middleware(
 )
 
 
-@app.get("/health")
+@app.get(f"{API_PREFIX}/health")
 def health() -> dict[str, str]:
     """Health check endpoint."""
 
     return {"status": "ok"}
 
 
-@app.get("/states")
+@app.get(f"{API_PREFIX}/states")
 def states() -> list[str]:
     """Return available states/UTs."""
 
     return get_states()
 
 
-@app.get("/districts")
+@app.get(f"{API_PREFIX}/districts")
 def districts(state: str | None = None) -> dict[str, list[str]]:
     """Compatibility endpoint; returns state-level units for this MVP."""
 
@@ -55,14 +57,14 @@ def districts(state: str | None = None) -> dict[str, list[str]]:
     return {"districts": states_list}
 
 
-@app.get("/years/{state}")
+@app.get(f"{API_PREFIX}/years/{{state}}")
 def years(state: str) -> list[int]:
     """Return years available for a selected state."""
 
     return get_years_for_state(state)
 
 
-@app.post("/predict", response_model=PredictionResponse)
+@app.post(f"{API_PREFIX}/predict", response_model=PredictionResponse)
 def predict_endpoint(payload: PredictionRequest) -> dict:
     """Predict next-year crime count for a state."""
 
@@ -74,14 +76,14 @@ def predict_endpoint(payload: PredictionRequest) -> dict:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
 
-@app.get("/statistics", response_model=StatisticsResponse)
+@app.get(f"{API_PREFIX}/statistics", response_model=StatisticsResponse)
 def statistics_endpoint() -> dict:
     """Return dashboard overview statistics."""
 
     return statistics()
 
 
-@app.get("/feature-importance")
+@app.get(f"{API_PREFIX}/feature-importance")
 def feature_importance() -> dict:
     """Return global feature importance and model metrics."""
 
