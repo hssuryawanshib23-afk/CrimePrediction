@@ -1,0 +1,30 @@
+{
+  "selected_model": "Linear Regression",
+  "features": [
+    {
+      "feature": "previous_crime_count",
+      "importance": 0.9328
+    },
+    {
+      "feature": "rolling_mean_3yr",
+      "importance": 0.0666
+    },
+    {
+      "feature": "population",
+      "importance": 0.0006
+    },
+    {
+      "feature": "literacy_rate",
+      "importance": 0.0001
+    },
+    {
+      "feature": "crime_growth_rate",
+      "importance": 0.0
+    },
+    {
+      "feature": "urban_population_pct",
+      "importance": 0.0
+    }
+  ],
+  "importance_source": "model feature importance fallback"
+}

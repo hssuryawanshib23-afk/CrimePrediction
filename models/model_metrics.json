@@ -1,0 +1,23 @@
+[
+  {
+    "model": "Linear Regression",
+    "mae": 2674.66,
+    "rmse": 4534.79,
+    "r2": 0.9973,
+    "selected": true
+  },
+  {
+    "model": "Random Forest",
+    "mae": 4412.03,
+    "rmse": 8162.24,
+    "r2": 0.9911,
+    "selected": false
+  },
+  {
+    "model": "XGBoost",
+    "mae": 4716.89,
+    "rmse": 8706.49,
+    "r2": 0.9899,
+    "selected": false
+  }
+]
